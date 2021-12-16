@@ -7,7 +7,7 @@ body {
 
 h1 {
   margin: 20px auto;
-	font-weight: 100;
+  font-weight: 100;
 }
 
 p {
@@ -15,22 +15,22 @@ p {
 }
 
 button {
-	padding: 0;
-	width: 15%;
-	height: 30px;
-	border: 0;
-	border-radius: 3px;
-	font-size: 16px;
-	background-color: #4b8569;
+  padding: 0;
+  width: 15%;
+  height: 30px;
+  border: 0;
+  border-radius: 3px;
+  font-size: 16px;
+  background-color: #4b8569;
 }
 
 input:focus {
-	outline: none;
-} 
+  outline: none;
+}
 
 button:hover {
-	cursor: pointer;
-	background-color: #1d8d36;
+  cursor: pointer;
+  background-color: #1d8d36;
 }
 
 .container {
@@ -67,7 +67,7 @@ button:hover {
   border: 0;
   height: 30px;
   padding: 0;
-	padding-left: 10px;
+  padding-left: 10px;
 }
 
 #add-money {
@@ -76,7 +76,7 @@ button:hover {
   border: 0;
   height: 30px;
   padding: 0;
-	padding-left: 10px;
+  padding-left: 10px;
 }
 
 .result {
@@ -88,7 +88,7 @@ button:hover {
 }
 
 .result p {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .list-group {
@@ -96,7 +96,7 @@ button:hover {
 }
 
 .list-group p {
-	font-size: 18px;
+  font-size: 18px;
 }
 
 .list-group-item {
