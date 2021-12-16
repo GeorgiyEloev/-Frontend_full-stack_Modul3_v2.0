@@ -208,7 +208,7 @@ button:hover {
   }
 
   .list-group-item-date-img {
-		width: 40%;
+    width: 40%;
   }
 
   .list-group-item-date-money {
@@ -220,12 +220,12 @@ button:hover {
   }
 }
 
-@media (min-width: 769px) and (max-width:1030px) {
-	.container {
-		width: 90%;
-	}
-	
-	.list-group-item-date-img {
-		width: 40%;
+@media (min-width: 769px) and (max-width: 1030px) {
+  .container {
+    width: 90%;
+  }
+
+  .list-group-item-date-img {
+    width: 40%;
   }
 }
