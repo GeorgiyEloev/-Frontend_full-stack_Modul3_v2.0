@@ -3,11 +3,14 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 h1 {
   margin: 20px auto;
   font-weight: 100;
+  text-align: center;
 }
 
 p {
@@ -107,7 +110,7 @@ button:hover {
 }
 
 .list-group-item-date-img {
-  width: 60%;
+  width: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -126,4 +129,92 @@ button:hover {
 
 .list-group-item-img img {
   width: 25px;
+}
+
+@media (max-width: 425px) {
+  .container {
+    width: 90%;
+  }
+
+  .add-panel {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .add-panel-name {
+    width: 100%;
+  }
+
+  .add-panel-money {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  button {
+    width: 50%;
+    align-self: flex-end;
+  }
+
+  .list-group-item {
+    align-items: flex-start;
+  }
+
+  .list-group-item-date-img {
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+  }
+
+  .list-group-item-date-money {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+    justify-content: end;
+    align-items: end;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+
+  .add-panel {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+	
+  .add-panel-name {
+    width: 100%;
+  }
+
+  .add-panel-money {
+    width: 100%;
+    margin: 10px auto;
+  }
+
+  button {
+    width: 30%;
+    align-self: flex-end;
+  }
+
+  .list-group-item {
+    align-items: flex-start;
+  }
+
+  .list-group-item-date-money {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 5px;
+    justify-content: end;
+    align-items: end;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1030px) {
+  .container {
+    width: 90%;
+  }
 }
