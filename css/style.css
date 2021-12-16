@@ -207,10 +207,6 @@ button:hover {
     align-items: flex-start;
   }
 
-  .list-group-item-date-img {
-    width: 40%;
-  }
-
   .list-group-item-date-money {
     flex-direction: column;
     gap: 5px;
@@ -223,9 +219,5 @@ button:hover {
 @media (min-width: 769px) and (max-width: 1030px) {
   .container {
     width: 90%;
-  }
-
-  .list-group-item-date-img {
-    width: 40%;
   }
 }
