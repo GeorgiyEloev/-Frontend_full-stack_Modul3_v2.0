@@ -4,3 +4,126 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+h1 {
+  margin: 20px auto;
+  font-weight: 100;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  padding: 0;
+  width: 15%;
+  height: 30px;
+  border: 0;
+  border-radius: 3px;
+  font-size: 16px;
+  background-color: #4b8569;
+}
+
+input:focus {
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #1d8d36;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 60%;
+  background-color: #65757f;
+  padding: 5px;
+  box-shadow: 2px 3px 3px black;
+  border-radius: 3px;
+}
+
+.add-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  width: 88%;
+  margin: 0 auto;
+}
+
+.add-panel-name {
+  width: 50%;
+}
+
+.add-panel-money {
+  width: 30%;
+}
+
+#name-shop {
+  width: -webkit-fill-available;
+  border-radius: 3px;
+  border: 0;
+  height: 30px;
+  padding: 0;
+  padding-left: 10px;
+}
+
+#add-money {
+  width: -webkit-fill-available;
+  border-radius: 3px;
+  border: 0;
+  height: 30px;
+  padding: 0;
+  padding-left: 10px;
+}
+
+.result {
+  width: 88%;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  margin: 15px 0;
+}
+
+.result p {
+  font-size: 18px;
+}
+
+.list-group {
+  width: 88%;
+}
+
+.list-group p {
+  font-size: 18px;
+}
+
+.list-group-item {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item-date-img {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-group-item-date-money {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+}
+
+.list-group-item-img {
+  display: flex;
+}
+
+.list-group-item-img img {
+  width: 25px;
+}
