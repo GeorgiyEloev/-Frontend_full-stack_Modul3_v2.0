@@ -4,3 +4,32 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+h1 {
+	margin: 20px auto;
+}
+
+p{
+	margin: 0;
+}
+
+.container {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+	flex-direction: column;
+	width: 60%;
+	background-color: #65757f;
+	padding: 5px;
+	box-shadow: 2px 3px 3px black;
+	border-radius: 3px;
+}
+
+.add-panel {
+	display: flex;
+	justify-content: center;
+  align-items: end;
+	grid-gap: 10px;
+	width: 100%;
+	margin: 0 auto;
+}
