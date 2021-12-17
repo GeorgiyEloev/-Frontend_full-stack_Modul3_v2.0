@@ -42,26 +42,25 @@ const addShopButton = async () => {
         "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify({
-				shop: valueShop,
-				money: valueMoney,
+        shop: valueShop,
+        money: valueMoney,
       }),
     });
 
     const result = await connect.json();
     arrayShoping = result.data;
 
-		inputShop.value = "";
-		inputMoney.value = "";
-		valueShop = "";
-		valueMoney = "";
+    inputShop.value = "";
+    inputMoney.value = "";
+    valueShop = "";
+    valueMoney = "";
 
-		dateChanged();
+    dateChanged();
 
-		renderShop();
+    renderShop();
   } else {
     alert("Поле пустое!!!");
   }
-
 };
 
 const renderShop = () => {
@@ -90,9 +89,12 @@ const renderShop = () => {
   updateResult();
 };
 
-const delItem = (index) => {
+const delItem = async (index) => {
+  const id = arrayShoping[index]._id;
   arrayShoping.splice(index, 1);
-  localStorage.setItem("shop", JSON.stringify(arrayShoping));
+  const connect = await fetch(`http://localhost:8000/delShop?_id=${id}`, {
+    method: "DELETE",
+  });
   renderShop();
 };
 
@@ -105,9 +107,6 @@ const editItem = (index) => {
   }
 
   const { shop, date, money } = arrayShoping[index];
-  let newDate = "";
-  const subDate = date.split(".");
-  newDate = subDate[2] + "-" + subDate[1] + "-" + subDate[0];
 
   const nameShop = document.createElement("input");
   const textDate = document.createElement("input");
@@ -121,7 +120,7 @@ const editItem = (index) => {
   nameShop.value = shop;
   textDate.type = "date";
   textDate.id = `date-${index}`;
-  textDate.value = newDate;
+  textDate.value = date;
   textMoney.type = "number";
   textMoney.id = `money-${index}`;
   textMoney.value = money;
@@ -161,10 +160,14 @@ const createItem = (index, shop, date, money) => {
   const editImg = document.createElement("img");
   const delImg = document.createElement("img");
 
+  let newDate = "";
+  const subDate = date.split("-");
+  newDate = subDate[2] + "." + subDate[1] + "." + subDate[0];
+
   nameShop.innerText = `${index + 1}) Магазин \"${shop}\"`;
   listGroupItemDateImg.className = "list-group-item-date-img";
   listGroupItemDateMoney.className = "list-group-item-date-money";
-  textDate.innerText = date;
+  textDate.innerText = newDate;
   textMoney.innerText = `${money} р.`;
   listGroupItemImg.className = "list-group-item-img";
   editImg.src = "https://img.icons8.com/ios/100/000000/edit--v1.png";
@@ -209,18 +212,12 @@ const changeItem = (index) => {
   const inputDate = document.getElementById(`date-${index}`);
   const inputNewMoney = document.getElementById(`money-${index}`);
 
-  let newDate = "";
-  const subDate = inputDate.value.split("-");
-  newDate = subDate[2] + "." + subDate[1] + "." + subDate[0];
-
   arrayShoping[index].shop = inputName.value;
-  arrayShoping[index].date = newDate;
+  arrayShoping[index].date = inputDate.value;
   arrayShoping[index].money = inputNewMoney.value;
 
-  localStorage.setItem("shop", JSON.stringify(arrayShoping));
-
   updateResult();
-
+	changeBD(index);
   const { shop, date, money } = arrayShoping[index];
   closeChange(index, shop, date, money);
 };
@@ -228,5 +225,22 @@ const changeItem = (index) => {
 const dateChanged = () => {
   arrayShoping.map((item) => {
     item.date = item.date.slice(0, 10);
+  });
+};
+
+const changeBD = async (index) => {
+  const { _id, shop, date, money } = arrayShoping[index];
+  const connect = await fetch("http://localhost:8000/updateShop", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*",
+    },
+    body: JSON.stringify({
+      _id,
+      shop,
+      date,
+      money,
+    }),
   });
 };
