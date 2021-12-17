@@ -4,14 +4,23 @@ let inputMoney = null;
 let valueShop = "";
 let valueMoney = "";
 
-let arrayShoping = JSON.parse(localStorage.getItem("shop")) || [];
+let arrayShoping = [];
 
-window.onload = () => {
+window.onload = async () => {
   inputShop = document.getElementById("name-shop");
   inputMoney = document.getElementById("add-money");
 
   inputShop.addEventListener("change", updateShop);
   inputMoney.addEventListener("change", updateMoney);
+
+  const connect = await fetch("http://localhost:8000/allShops", {
+    method: "GET",
+  });
+
+  const result = await connect.json();
+  arrayShoping = result.data;
+
+  dateChanged();
 
   renderShop();
 };
@@ -24,24 +33,35 @@ const updateMoney = (event) => {
   valueMoney = event.target.value;
 };
 
-const addShopButton = () => {
-  const data = new Date();
-  const strData =
-    "" + data.getDate() + "." + data.getMonth() + "." + data.getFullYear();
+const addShopButton = async () => {
+  if (valueShop && valueMoney) {
+    const connect = await fetch("http://localhost:8000/createShop", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json;charset=utf-8",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+				shop: valueShop,
+				money: valueMoney,
+      }),
+    });
 
-  arrayShoping.push({
-    shop: valueShop,
-    date: strData,
-    money: valueMoney,
-  });
+    const result = await connect.json();
+    arrayShoping = result.data;
 
-  localStorage.setItem("shop", JSON.stringify(arrayShoping));
-  inputShop.value = "";
-  inputMoney.value = "";
-  valueShop = "";
-  valueMoney = "";
+		inputShop.value = "";
+		inputMoney.value = "";
+		valueShop = "";
+		valueMoney = "";
 
-  renderShop();
+		dateChanged();
+
+		renderShop();
+  } else {
+    alert("Поле пустое!!!");
+  }
+
 };
 
 const renderShop = () => {
@@ -203,4 +223,10 @@ const changeItem = (index) => {
 
   const { shop, date, money } = arrayShoping[index];
   closeChange(index, shop, date, money);
+};
+
+const dateChanged = () => {
+  arrayShoping.map((item) => {
+    item.date = item.date.slice(0, 10);
+  });
 };
