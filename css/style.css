@@ -102,7 +102,8 @@ button:hover {
   font-size: 18px;
 }
 
-.list-group-item, .edit-item {
+.list-group-item,
+.edit-item {
   margin-bottom: 15px;
   display: flex;
   justify-content: space-between;
@@ -125,7 +126,7 @@ button:hover {
 
 .list-group-item-img {
   display: flex;
-	gap: 5px;
+  gap: 5px;
 }
 
 .list-group-item-img img {
@@ -174,10 +175,11 @@ button:hover {
     justify-content: end;
     align-items: end;
   }
-	.edit-item {
-		flex-direction: column;
-		gap: 5px;
-	}
+
+  .edit-item {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 @media (min-width: 426px) and (max-width: 768px) {
@@ -190,7 +192,7 @@ button:hover {
     justify-content: flex-start;
     align-items: flex-start;
   }
-	
+
   .add-panel-name {
     width: 100%;
   }
@@ -216,11 +218,12 @@ button:hover {
     justify-content: end;
     align-items: end;
   }
-	.edit-item {
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-		gap: 5px;
-	}
+
+  .edit-item {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 5px;
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1030px) {
