@@ -60,8 +60,10 @@ const renderShop = () => {
     listGroupItem.className = "list-group-item";
     listGroupItem.id = `item-${index}`;
 
-    listGroupItem.appendChild(objItem.name);
-    listGroupItem.appendChild(objItem.date);
+    const { name, dateObj } = objItem;
+
+    listGroupItem.appendChild(name);
+    listGroupItem.appendChild(dateObj);
     listGroup.appendChild(listGroupItem);
   });
 
@@ -160,7 +162,7 @@ const createItem = (index, shop, date, money) => {
 
   const obj = {
     name: nameShop,
-    date: listGroupItemDateImg,
+    dateObj: listGroupItemDateImg,
   };
 
   return obj;
@@ -176,8 +178,10 @@ const closeChange = (index, shop, date, money) => {
 
   const objItem = createItem(index, shop, date, money);
 
-  listGroupItem.appendChild(objItem.name);
-  listGroupItem.appendChild(objItem.date);
+  const { name, dateObj } = objItem;
+
+  listGroupItem.appendChild(name);
+  listGroupItem.appendChild(dateObj);
 };
 
 const changeItem = (index) => {
