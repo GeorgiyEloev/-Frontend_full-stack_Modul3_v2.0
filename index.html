@@ -6,7 +6,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>
 	<link rel="stylesheet" href="css/style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- <script src"script.js"></script> -->
+	<script src="js/script.js"></script>
 </head>
 
 <body>
@@ -21,12 +21,13 @@
 				<p style="font-size: 15px;">Сколько было потрачено:</p>
 				<input type="number" id="add-money" placeholder="Сколько было потрачено">
 			</div>
-			<button>Добавить</button>
+			<button onclick="addShopButton()">Добавить</button>
 		</div>
 		<div class="result">
 			<p>Итого: 7884 р.</p>
 		</div>
-		<div class="list-group">
+		<!-- Блок лист группы -->
+		<div class="list-group" id="shop-list">
 			<div class="list-group-item">
 				<p>1) Магазин "Пятерочка"</p>
 				<div class="list-group-item-date-img">
