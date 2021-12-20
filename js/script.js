@@ -137,7 +137,7 @@ const editItem = (index) => {
   textMoney.value = money;
   textMoney.min = 0;
   textMoney.max = 9999999;
-	
+
   listGroupItemImg.className = "list-group-item-img";
   okImg.src = "https://img.icons8.com/ios/50/000000/ok--v1.png";
   delImg.src = "https://img.icons8.com/ios/100/000000/cancel.png";
@@ -300,38 +300,50 @@ const changeValue = (index, key, typeInput) => {
     const newInput = document.createElement("input");
 
     newInput.type = typeInput;
-    newInput.className = "nav";
     newInput.id = `${typeInput}-${index}`;
     newInput.value = arrayShoping[index][key];
     newInput.maxLength = 16;
     newInput.onblur = () => {
       updateOneValue(index, key, typeInput);
     };
-    listGroupItem.appendChild(newInput);
-  } else if (key === "date" || key === "money") {
-    const listGroupItem = document.getElementById(`date-money-${index}`);
+
+    listGroupItem.prepend(newInput);
+  } else if (key === "date") {
+		const listGroupItem = document.getElementById(`date-money-${index}`);
     const newInput = document.createElement("input");
 
     const dateName = document.getElementById(`PD-${index}`);
     dateName.className = "hid";
-    const moneyName = document.getElementById(`PM-${index}`);
-    moneyName.className = "hidV2";
 
     newInput.type = typeInput;
-    newInput.className = "nav";
     newInput.id = `${typeInput}-${index}`;
     newInput.value = arrayShoping[index][key];
-    if (key === "date") {
-      newInput.min = "2018-01-01";
-      newInput.max = "2022-12-31";
-    } else if (key === "money") {
-      newInput.min = 1;
-      newInput.max = 9999999;
-    }
+    newInput.min = "2018-01-01";
+    newInput.max = "2022-12-31";
+
     newInput.onblur = () => {
       updateOneValue(index, key, typeInput);
     };
-    listGroupItem.appendChild(newInput);
+
+    listGroupItem.prepend(newInput);
+  } else if (key === "money") {
+    const listGroupItem = document.getElementById(`date-money-${index}`);
+    const newInput = document.createElement("input");
+
+    const moneyName = document.getElementById(`PM-${index}`);
+    moneyName.className = "hid";
+
+    newInput.type = typeInput;
+    newInput.id = `${typeInput}-${index}`;
+    newInput.value = arrayShoping[index][key];
+    newInput.min = 1;
+    newInput.max = 9999999;
+
+    newInput.onblur = () => {
+      updateOneValue(index, key, typeInput);
+    };
+
+    listGroupItem.append(newInput);
   }
 };
 

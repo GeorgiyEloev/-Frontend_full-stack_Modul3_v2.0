@@ -57,8 +57,8 @@ button:hover {
 }
 
 .add-panel p {
-	margin-bottom: 5px;
-	font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
 }
 
 .add-panel-name {
@@ -96,7 +96,7 @@ button:hover {
 }
 
 .result p {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .list-group {
@@ -104,7 +104,7 @@ button:hover {
 }
 
 .list-group p {
-	font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 .list-group-item,
@@ -116,7 +116,7 @@ button:hover {
 }
 
 .list-group-item-date-img {
-  width: 40%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,8 +124,9 @@ button:hover {
 
 .list-group-item-date-money {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 15px;
+  width: 75%;
   align-items: center;
 }
 
@@ -250,9 +251,5 @@ button:hover {
 }
 
 .hid {
-  visibility: hidden;
-}
-
-.hidV2 {
   display: none;
 }
