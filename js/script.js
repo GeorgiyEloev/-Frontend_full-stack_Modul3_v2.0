@@ -300,6 +300,7 @@ const changeValue = (index, key, typeInput) => {
     const newInput = document.createElement("input");
 
     newInput.type = typeInput;
+    newInput.autofocus = true;
     newInput.id = `${typeInput}-${index}`;
     newInput.value = arrayShoping[index][key];
     newInput.maxLength = 16;
@@ -309,13 +310,14 @@ const changeValue = (index, key, typeInput) => {
 
     listGroupItem.prepend(newInput);
   } else if (key === "date") {
-		const listGroupItem = document.getElementById(`date-money-${index}`);
+    const listGroupItem = document.getElementById(`date-money-${index}`);
     const newInput = document.createElement("input");
 
     const dateName = document.getElementById(`PD-${index}`);
     dateName.className = "hid";
 
     newInput.type = typeInput;
+    newInput.autofocus = true;
     newInput.id = `${typeInput}-${index}`;
     newInput.value = arrayShoping[index][key];
     newInput.min = "2018-01-01";
@@ -334,6 +336,7 @@ const changeValue = (index, key, typeInput) => {
     moneyName.className = "hid";
 
     newInput.type = typeInput;
+    newInput.autofocus = true;
     newInput.id = `${typeInput}-${index}`;
     newInput.value = arrayShoping[index][key];
     newInput.min = 1;
