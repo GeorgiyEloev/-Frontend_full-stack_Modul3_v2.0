@@ -85,7 +85,6 @@ const renderShop = () => {
     const listGroupItem = document.createElement("div");
     listGroupItem.className = "list-group-item";
     listGroupItem.id = `item-${index}`;
-    // listGroupItem.ondblclick = () => editItem(index);
 
     const { name, dateObj } = objItem;
 
@@ -122,24 +121,23 @@ const editItem = (index) => {
   const okImg = document.createElement("img");
   const delImg = document.createElement("img");
 
-  // nameShop.onblur = () => changeItem(index);
-  // textDate.onblur = () => changeItem(index);
-  // textMoney.onblur = () => changeItem(index);
-
   nameShop.type = "text";
   nameShop.id = `text-${index}`;
   nameShop.value = shop;
   nameShop.maxLength = 16;
+
   textDate.type = "date";
   textDate.id = `date-${index}`;
   textDate.min = "2018-01-01";
   textDate.max = "2022-12-31";
   textDate.value = date;
+
   textMoney.type = "number";
   textMoney.id = `money-${index}`;
   textMoney.value = money;
   textMoney.min = 0;
   textMoney.max = 9999999;
+	
   listGroupItemImg.className = "list-group-item-img";
   okImg.src = "https://img.icons8.com/ios/50/000000/ok--v1.png";
   delImg.src = "https://img.icons8.com/ios/100/000000/cancel.png";
@@ -226,8 +224,6 @@ const closeChange = (index, shop, date, money) => {
   const listGroupItem = document.getElementById(`item-${index}`);
   listGroupItem.className = "list-group-item";
 
-  // listGroupItem.ondblclick = () => editItem(index);
-
   while (listGroupItem.firstChild) {
     listGroupItem.removeChild(listGroupItem.firstChild);
   }
@@ -268,7 +264,7 @@ const changeItem = (index) => {
     const { shop, date, money } = arrayShoping[index];
     closeChange(index, shop, date, money);
     alert(`Error, incorrect data!!!\nThe store name field should not be empty!
-Date from 2018-01-01 to 2022-12-31!\nThe amount of money from 1 to 9999999!
+Date from 01.01.2018 to 31.12.2022!\nThe amount of money from 1 to 9999999!
 I don't believe you're spending so much!!!`);
   }
 };
@@ -362,7 +358,7 @@ const updateOneValue = (index, key, typeInput) => {
       changeBD(index);
       renderShop();
     } else {
-      alert("Invalid date!!!\nDate from 2018-01-01 to 2022-12-31!\n");
+      alert("Invalid date!!!\nDate from 01.01.2018 to 31.12.2022!\n");
       renderShop();
     }
   } else if (key === "money") {
