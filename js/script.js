@@ -357,10 +357,10 @@ const updateOneValue = (index, key, typeInput) => {
     if (value.trim() && value.trim().length <= 16) {
       arrayShoping[index][key] = value.trim();
       changeBD(index);
-			location.reload();
+      location.reload();
     } else {
       alert("Invalid name!!!\nThe store name field should not be empty!");
-			location.reload();
+      location.reload();
     }
   } else if (key === "date") {
     if (
@@ -371,21 +371,21 @@ const updateOneValue = (index, key, typeInput) => {
     ) {
       arrayShoping[index][key] = value.trim();
       changeBD(index);
-			location.reload();
+      location.reload();
     } else {
       alert("Invalid date!!!\nDate from 01.01.2018 to 31.12.2022!\n");
-			location.reload();
+      location.reload();
     }
   } else if (key === "money") {
     if (+value && value && value > 0 && value <= 9999999) {
       arrayShoping[index][key] = value.trim();
       changeBD(index);
-			location.reload();
+      location.reload();
     } else {
       alert(
         "Invalid money!!!\nThe amount of money from 1 to 9999999!\nI don't believe you're spending so much!!!"
       );
-			location.reload();
+      location.reload();
     }
   } else {
     alert("Error!!! incorrect key");
