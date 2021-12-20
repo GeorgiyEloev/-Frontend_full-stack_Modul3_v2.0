@@ -56,6 +56,11 @@ button:hover {
   margin: 0 auto;
 }
 
+.add-panel p {
+	margin-bottom: 5px;
+	font-size: 1.2rem;
+}
+
 .add-panel-name {
   width: 50%;
 }
@@ -91,7 +96,7 @@ button:hover {
 }
 
 .result p {
-  font-size: 18px;
+	font-size: 1.2rem;
 }
 
 .list-group {
@@ -99,7 +104,7 @@ button:hover {
 }
 
 .list-group p {
-  font-size: 18px;
+	font-size: 1.2rem;
 }
 
 .list-group-item,
@@ -230,4 +235,24 @@ button:hover {
   .container {
     width: 90%;
   }
+}
+
+.nav {
+  position: fixed;
+  display: block;
+  border: 1px solid #333;
+}
+
+.nav:hover {
+  position: fixed;
+  display: block;
+  z-index: 99999999;
+}
+
+.hid {
+  visibility: hidden;
+}
+
+.hidV2 {
+  display: none;
 }

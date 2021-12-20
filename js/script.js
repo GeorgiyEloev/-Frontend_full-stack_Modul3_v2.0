@@ -34,7 +34,12 @@ const updateMoney = (event) => {
 };
 
 const addShopButton = async () => {
-  if (valueShop && valueMoney) {
+  if (
+    valueShop.trim() &&
+    valueMoney &&
+    valueMoney > 0 &&
+    valueMoney <= 9999999
+  ) {
     const connect = await fetch("http://localhost:8000/createShop", {
       method: "POST",
       headers: {
@@ -59,7 +64,9 @@ const addShopButton = async () => {
 
     renderShop();
   } else {
-    alert("Поле пустое!!!");
+    alert(
+      "Error, incorrect data!!! The fields are empty or the number exceeds 9999999!!!!"
+    );
   }
 };
 
@@ -78,6 +85,7 @@ const renderShop = () => {
     const listGroupItem = document.createElement("div");
     listGroupItem.className = "list-group-item";
     listGroupItem.id = `item-${index}`;
+    // listGroupItem.ondblclick = () => editItem(index);
 
     const { name, dateObj } = objItem;
 
@@ -105,7 +113,6 @@ const editItem = (index) => {
   while (listGroupItem.firstChild) {
     listGroupItem.removeChild(listGroupItem.firstChild);
   }
-
   const { shop, date, money } = arrayShoping[index];
 
   const nameShop = document.createElement("input");
@@ -115,15 +122,24 @@ const editItem = (index) => {
   const okImg = document.createElement("img");
   const delImg = document.createElement("img");
 
+  // nameShop.onblur = () => changeItem(index);
+  // textDate.onblur = () => changeItem(index);
+  // textMoney.onblur = () => changeItem(index);
+
   nameShop.type = "text";
   nameShop.id = `text-${index}`;
   nameShop.value = shop;
+  nameShop.maxLength = 16;
   textDate.type = "date";
   textDate.id = `date-${index}`;
+  textDate.min = "2018-01-01";
+  textDate.max = "2022-12-31";
   textDate.value = date;
   textMoney.type = "number";
   textMoney.id = `money-${index}`;
   textMoney.value = money;
+  textMoney.min = 0;
+  textMoney.max = 9999999;
   listGroupItemImg.className = "list-group-item-img";
   okImg.src = "https://img.icons8.com/ios/50/000000/ok--v1.png";
   delImg.src = "https://img.icons8.com/ios/100/000000/cancel.png";
@@ -160,6 +176,20 @@ const createItem = (index, shop, date, money) => {
   const editImg = document.createElement("img");
   const delImg = document.createElement("img");
 
+  nameShop.id = `PS-${index}`;
+  textDate.id = `PD-${index}`;
+  textMoney.id = `PM-${index}`;
+
+  nameShop.ondblclick = () => {
+    changeValue(index, "shop", "text");
+  };
+  textDate.ondblclick = () => {
+    changeValue(index, "date", "date");
+  };
+  textMoney.ondblclick = () => {
+    changeValue(index, "money", "number");
+  };
+
   let newDate = "";
   const subDate = date.split("-");
   newDate = subDate[2] + "." + subDate[1] + "." + subDate[0];
@@ -167,6 +197,7 @@ const createItem = (index, shop, date, money) => {
   nameShop.innerText = `${index + 1}) Магазин \"${shop}\"`;
   listGroupItemDateImg.className = "list-group-item-date-img";
   listGroupItemDateMoney.className = "list-group-item-date-money";
+  listGroupItemDateMoney.id = `date-money-${index}`;
   textDate.innerText = newDate;
   textMoney.innerText = `${money} р.`;
   listGroupItemImg.className = "list-group-item-img";
@@ -195,6 +226,8 @@ const closeChange = (index, shop, date, money) => {
   const listGroupItem = document.getElementById(`item-${index}`);
   listGroupItem.className = "list-group-item";
 
+  // listGroupItem.ondblclick = () => editItem(index);
+
   while (listGroupItem.firstChild) {
     listGroupItem.removeChild(listGroupItem.firstChild);
   }
@@ -212,14 +245,32 @@ const changeItem = (index) => {
   const inputDate = document.getElementById(`date-${index}`);
   const inputNewMoney = document.getElementById(`money-${index}`);
 
-  arrayShoping[index].shop = inputName.value;
-  arrayShoping[index].date = inputDate.value;
-  arrayShoping[index].money = inputNewMoney.value;
+  if (
+    inputName.value.trim() &&
+    inputDate.value &&
+    inputDate.value.length === 10 &&
+    +inputNewMoney.value &&
+    inputNewMoney.value &&
+    inputNewMoney.value > 0 &&
+    inputDate.max >= inputDate.value &&
+    inputDate.min <= inputDate.value &&
+    inputNewMoney.value <= 9999999
+  ) {
+    arrayShoping[index].shop = inputName.value;
+    arrayShoping[index].date = inputDate.value;
+    arrayShoping[index].money = inputNewMoney.value;
 
-  updateResult();
-	changeBD(index);
-  const { shop, date, money } = arrayShoping[index];
-  closeChange(index, shop, date, money);
+    updateResult();
+    changeBD(index);
+    const { shop, date, money } = arrayShoping[index];
+    closeChange(index, shop, date, money);
+  } else {
+    const { shop, date, money } = arrayShoping[index];
+    closeChange(index, shop, date, money);
+    alert(`Error, incorrect data!!!\nThe store name field should not be empty!
+Date from 2018-01-01 to 2022-12-31!\nThe amount of money from 1 to 9999999!
+I don't believe you're spending so much!!!`);
+  }
 };
 
 const dateChanged = () => {
@@ -243,4 +294,90 @@ const changeBD = async (index) => {
       money,
     }),
   });
+};
+
+const changeValue = (index, key, typeInput) => {
+  if (key === "shop") {
+    const shopName = document.getElementById(`PS-${index}`);
+    shopName.className = "hid";
+    const listGroupItem = document.getElementById(`item-${index}`);
+    const newInput = document.createElement("input");
+
+    newInput.type = typeInput;
+    newInput.className = "nav";
+    newInput.id = `${typeInput}-${index}`;
+    newInput.value = arrayShoping[index][key];
+    newInput.maxLength = 16;
+    newInput.onblur = () => {
+      updateOneValue(index, key, typeInput);
+    };
+    listGroupItem.appendChild(newInput);
+  } else if (key === "date" || key === "money") {
+    const listGroupItem = document.getElementById(`date-money-${index}`);
+    const newInput = document.createElement("input");
+
+    const dateName = document.getElementById(`PD-${index}`);
+    dateName.className = "hid";
+    const moneyName = document.getElementById(`PM-${index}`);
+    moneyName.className = "hidV2";
+
+    newInput.type = typeInput;
+    newInput.className = "nav";
+    newInput.id = `${typeInput}-${index}`;
+    newInput.value = arrayShoping[index][key];
+    if (key === "date") {
+      newInput.min = "2018-01-01";
+      newInput.max = "2022-12-31";
+    } else if (key === "money") {
+      newInput.min = 1;
+      newInput.max = 9999999;
+    }
+    newInput.onblur = () => {
+      updateOneValue(index, key, typeInput);
+    };
+    listGroupItem.appendChild(newInput);
+  }
+};
+
+const updateOneValue = (index, key, typeInput) => {
+  const inputNew = document.getElementById(`${typeInput}-${index}`);
+  const value = inputNew.value;
+  if (key === "shop") {
+    if (value.trim() && value.trim().length <= 16) {
+      arrayShoping[index][key] = value.trim();
+      changeBD(index);
+      renderShop();
+    } else {
+      alert("Invalid name!!!\nThe store name field should not be empty!");
+      renderShop();
+    }
+  } else if (key === "date") {
+    if (
+      value.trim() &&
+      value.length === 10 &&
+      inputNew.max >= value &&
+      inputNew.min <= value
+    ) {
+      arrayShoping[index][key] = value.trim();
+      changeBD(index);
+      renderShop();
+    } else {
+      alert("Invalid date!!!\nDate from 2018-01-01 to 2022-12-31!\n");
+      renderShop();
+    }
+  } else if (key === "money") {
+    if (+value && value && value > 0 && value <= 9999999) {
+      arrayShoping[index][key] = value.trim();
+      changeBD(index);
+      renderShop();
+    } else {
+      alert(
+        "Invalid money!!!\nThe amount of money from 1 to 9999999!\nI don't believe you're spending so much!!!"
+      );
+      renderShop();
+    }
+  } else {
+    alert("Error!!! incorrect key");
+    renderShop();
+  }
 };
